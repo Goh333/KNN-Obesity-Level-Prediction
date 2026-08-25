@@ -54,7 +54,7 @@ def main():
     # 1. LOAD DATA
     X, y = load_data()
 
-    # 2. STRICT PREPROCESSING (Aligned with Team Methodology)
+    # 2. STRICT PREPROCESSING
     binary_cols = ["Gender", "family_history_with_overweight", "FAVC", "SMOKE", "SCC"]
     nominal_cols = ["CAEC", "CALC", "MTRANS"]          
     numeric_cols = ["Age", "Height", "Weight", "FCVC", "NCP", "CH2O", "FAF", "TUE"]
