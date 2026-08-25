@@ -9,16 +9,13 @@ warnings.filterwarnings('ignore')
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import GridSearchCV
 
-# Ensure the graphs directory exists
 os.makedirs('results/graphs', exist_ok=True)
 
-# Main orchestrator function for hyperparameter tuning
 def main():
     print("============================================================")
     print("KNN HYPERPARAMETER TUNING")
     print("============================================================")
 
-    # Load the preprocessed data
     try:
         data = joblib.load('pkl/processed_data.pkl')
         X_train, y_train = data['X_train_scaled'], data['y_train']
@@ -26,7 +23,6 @@ def main():
         print("Error: 'pkl/processed_data.pkl' not found. Run knnPreprocessing.py first.")
         return
 
-    # Define the exact parameter grid from the report
     param_grid = {
         "n_neighbors": [3, 5, 7, 9, 11, 15, 21],
         "weights": ["uniform", "distance"],
@@ -36,7 +32,6 @@ def main():
     
     print("Initializing GridSearchCV (5-fold CV)...")
     
-    # Initialize and run GridSearchCV
     start_time = time.time()
     grid = GridSearchCV(KNeighborsClassifier(), param_grid, cv=5, scoring="accuracy", n_jobs=-1)
     grid.fit(X_train, y_train)
@@ -57,7 +52,6 @@ def main():
     print("GENERATING GRAPHS")
     print("============================================================")
     
-    # Generate and save the performance line charts for each parameter
     cv_results = pd.DataFrame(grid.cv_results_)
     
     for param in ["n_neighbors", "weights", "metric", "p"]:
@@ -76,6 +70,5 @@ def main():
     
     print("Tuning graphs saved to 'results/graphs/'")
 
-# Entry point of the script
 if __name__ == "__main__":
     main()
