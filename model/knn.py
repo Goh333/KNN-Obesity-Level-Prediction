@@ -177,7 +177,7 @@ def main():
     fig, ax = plt.subplots(figsize=(9, 8))
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=target_encoder.classes_)
     disp.plot(ax=ax, xticks_rotation=45, cmap="Blues", colorbar=False)
-    plt.title("Confusion Matrix — KNN (Best Params)")
+    plt.title("Confusion Matrix — KNN")
     plt.tight_layout()
     plt.savefig("results/graphs/knn_confusion_matrix.png", dpi=150)
     plt.close()

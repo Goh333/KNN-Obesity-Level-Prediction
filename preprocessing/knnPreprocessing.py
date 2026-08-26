@@ -29,6 +29,10 @@ def load_data():
         X = df.drop(columns=["NObeyesdad"])
         return X, y
 
+X, y = load_data()
+print("Feature matrix shape:", X.shape)
+print("Target distribution:\n", y.value_counts())
+
 def preprocess_data():
     start_time = time.time()
 
